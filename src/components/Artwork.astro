@@ -1,0 +1,124 @@
+---
+interface Props {
+  palette: 'coral' | 'blue' | 'green';
+  label: string;
+  large?: boolean;
+}
+
+const { palette, label, large = false } = Astro.props;
+---
+
+<div class:list={['artwork', `artwork--${palette}`, { 'artwork--large': large }]} aria-label={label} role="img">
+  <div class="artwork__paper">
+    <div class="artwork__bar"></div>
+    <div class="artwork__content">
+      <span></span><span></span><span></span>
+      <i></i><i></i>
+    </div>
+  </div>
+  <div class="artwork__circle"></div>
+  <div class="artwork__chip"></div>
+  <div class="artwork__grid" aria-hidden="true"></div>
+</div>
+
+<style>
+  .artwork {
+    position: relative;
+    display: grid;
+    min-height: 20rem;
+    overflow: hidden;
+    isolation: isolate;
+    place-items: center;
+    border-radius: var(--radius-large);
+  }
+
+  .artwork--large {
+    min-height: clamp(22rem, 45vw, 36rem);
+  }
+
+  .artwork--coral { background: #e9a48d; }
+  .artwork--blue { background: #a4cbd2; }
+  .artwork--green { background: #b9c9a8; }
+
+  .artwork__paper {
+    position: relative;
+    z-index: 2;
+    width: 53%;
+    height: 62%;
+    padding: 8%;
+    background: #fdfcf8;
+    border-radius: 0.8rem;
+    box-shadow: 0 1.5rem 2rem rgb(23 33 29 / 16%);
+    transform: rotate(-7deg);
+  }
+
+  .artwork__bar,
+  .artwork__content span,
+  .artwork__content i {
+    display: block;
+    border-radius: 50rem;
+  }
+
+  .artwork__bar {
+    width: 37%;
+    height: 0.45rem;
+    margin-bottom: 18%;
+    background: var(--ink);
+  }
+
+  .artwork__content span {
+    width: 100%;
+    height: 0.4rem;
+    margin-bottom: 11%;
+    background: #d7d8d1;
+  }
+
+  .artwork__content span:nth-child(2) { width: 78%; }
+  .artwork__content span:nth-child(3) { width: 59%; }
+
+  .artwork__content i {
+    display: inline-block;
+    width: 41%;
+    height: 27%;
+    margin: 8% 5% 0 0;
+    background: var(--ink);
+  }
+
+  .artwork__content i:last-child { background: var(--accent); }
+
+  .artwork__circle {
+    position: absolute;
+    z-index: 1;
+    right: 8%;
+    bottom: -22%;
+    width: 50%;
+    aspect-ratio: 1;
+    border: 0.5rem solid rgb(253 252 248 / 70%);
+    border-radius: 50%;
+  }
+
+  .artwork__chip {
+    position: absolute;
+    z-index: 3;
+    top: 14%;
+    left: 11%;
+    width: 13%;
+    aspect-ratio: 1;
+    background: var(--yellow);
+    border-radius: 50%;
+    transform: rotate(20deg);
+  }
+
+  .artwork__grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.19;
+    background-image: linear-gradient(#17211d 1px, transparent 1px), linear-gradient(90deg, #17211d 1px, transparent 1px);
+    background-size: 2.25rem 2.25rem;
+  }
+
+  .artwork--blue .artwork__paper { transform: rotate(5deg); }
+  .artwork--blue .artwork__chip { background: var(--accent); }
+  .artwork--green .artwork__paper { transform: rotate(-3deg); }
+  .artwork--green .artwork__content i:last-child { background: var(--blue); }
+</style>

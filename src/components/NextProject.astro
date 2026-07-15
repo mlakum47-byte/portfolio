@@ -1,0 +1,51 @@
+---
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<a class="next-project" href={`/work/${project.slug}`}>
+  <span class="eyebrow">Next case study</span>
+  <span class="next-project__title">{project.title} <i aria-hidden="true">↗</i></span>
+  <span class="next-project__summary">{project.summary}</span>
+</a>
+
+<style>
+  .next-project {
+    display: grid;
+    gap: 0.8rem;
+    margin-top: var(--space-6);
+    padding: clamp(2rem, 5vw, 4rem);
+    color: var(--surface);
+    background: var(--ink);
+    border-radius: var(--radius-large);
+    text-decoration: none;
+  }
+
+  .next-project .eyebrow { color: #b8c0ba; }
+
+  .next-project__title {
+    max-width: 13ch;
+    font-family: var(--serif);
+    font-size: clamp(2.25rem, 5vw, 4.25rem);
+    letter-spacing: -0.06em;
+    line-height: 0.92;
+  }
+
+  .next-project__title i {
+    color: var(--yellow);
+    font-family: var(--sans);
+    font-size: 0.65em;
+    font-style: normal;
+  }
+
+  .next-project__summary {
+    max-width: 45ch;
+    color: #b8c0ba;
+    font-size: 0.9rem;
+  }
+</style>

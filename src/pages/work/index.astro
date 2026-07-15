@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { projects } from '../../data/projects';
+---
+
+<BaseLayout title="Work — Mayank, UI/UX Designer" description="Selected UI/UX case studies by Mayank.">
+  <section class="work-hero container">
+    <p class="eyebrow">Selected work · 2023—24</p>
+    <h1>Projects shaped<br />by <em>careful attention.</em></h1>
+    <p>Case studies in product, service, and systems design. Each explores the details that help people understand what to do next.</p>
+  </section>
+
+  <section class="archive container" aria-label="All case studies">
+    <div class="archive__line"><span>03 case studies</span><span>Scroll to explore ↓</span></div>
+    <div class="archive__grid">
+      {projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .work-hero {
+    padding-top: clamp(4rem, 10vw, 9rem);
+  }
+
+  h1 {
+    max-width: 12ch;
+    margin: 1rem 0 2rem;
+    font-family: var(--serif);
+    font-size: clamp(3.7rem, 9vw, 8.6rem);
+    font-weight: 400;
+    letter-spacing: -0.065em;
+    line-height: 0.88;
+  }
+
+  h1 em { color: var(--accent-deep); }
+
+  .work-hero > p:last-child {
+    max-width: 42ch;
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+  }
+
+  .archive {
+    padding-top: var(--space-6);
+  }
+
+  .archive__line {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.8rem;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--line);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .archive__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(3rem, 7vw, 7rem) clamp(1.5rem, 4vw, 4rem);
+    padding-top: var(--space-5);
+  }
+
+  .archive__grid > :first-child {
+    grid-column: 1 / -1;
+    width: min(100%, 52rem);
+  }
+
+  @media (max-width: 36rem) {
+    .archive__grid { grid-template-columns: 1fr; }
+    .archive__line span:last-child { display: none; }
+  }
+</style>

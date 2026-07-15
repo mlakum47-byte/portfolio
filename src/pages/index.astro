@@ -1,0 +1,241 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { projects } from '../data/projects';
+---
+
+<BaseLayout>
+  <section class="hero container" aria-labelledby="hero-title">
+    <p class="eyebrow hero__eyebrow">Independent UI/UX designer · India / remote</p>
+    <div class="hero__body">
+      <h1 id="hero-title">I make complex products feel <em>clear</em>, useful, and worth returning to.</h1>
+      <div class="hero__aside">
+        <p>I’m Mayank, a UI/UX designer who turns intricate services into thoughtful, human digital experiences.</p>
+        <a class="hero__link" href="mailto:hello@mayank.design">Start a conversation <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <div class="hero__stamp" aria-label="Available for selected projects">
+      <span>Open to</span>
+      <strong>select<br />projects</strong>
+      <i aria-hidden="true">✦</i>
+    </div>
+  </section>
+
+  <section class="work container" aria-labelledby="work-title">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">01 — Selected work</p>
+        <h2 id="work-title">Stories of clarity</h2>
+      </div>
+      <a class="text-link" href="/work">See all work</a>
+    </div>
+
+    <div class="project-grid">
+      {projects.map((project, index) => <ProjectCard project={project} featured={index === 0} />)}
+    </div>
+  </section>
+
+  <section class="approach container" aria-labelledby="approach-title">
+    <div class="approach__label">
+      <p class="eyebrow">02 — A considered practice</p>
+    </div>
+    <div class="approach__copy">
+      <h2 id="approach-title">The best interfaces leave people feeling more capable than when they arrived.</h2>
+      <p>I work from real behaviour, not assumptions—bringing research, systems thinking, and an editorial eye to the moments where products either earn trust or lose it.</p>
+      <a class="text-link" href="/about">More about my approach</a>
+    </div>
+  </section>
+
+  <section class="contact container" aria-labelledby="contact-title">
+    <p class="eyebrow">03 — Have something in mind?</p>
+    <h2 id="contact-title">Let’s make the next<br /><em>important thing</em> clearer.</h2>
+    <a href="mailto:hello@mayank.design">hello@mayank.design <span aria-hidden="true">↗</span></a>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 38rem;
+    padding-top: clamp(3.5rem, 10vw, 8rem);
+    padding-bottom: var(--space-6);
+  }
+
+  .hero__eyebrow {
+    margin-bottom: clamp(4rem, 13vw, 10rem);
+  }
+
+  .hero__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(13rem, 0.55fr);
+    gap: clamp(2rem, 6vw, 7rem);
+    align-items: end;
+  }
+
+  h1,
+  h2 {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 400;
+    letter-spacing: -0.06em;
+    line-height: 0.91;
+  }
+
+  h1 {
+    max-width: 11ch;
+    font-size: clamp(3.6rem, 9vw, 8.8rem);
+  }
+
+  h1 em {
+    color: var(--accent-deep);
+    font-style: italic;
+  }
+
+  .contact em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .hero__aside {
+    padding-bottom: 0.5rem;
+  }
+
+  .hero__aside p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .hero__link {
+    display: inline-block;
+    margin-top: 1.3rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .hero__stamp {
+    position: absolute;
+    top: 21%;
+    right: 7%;
+    display: grid;
+    width: 8rem;
+    aspect-ratio: 1;
+    padding: 1.1rem;
+    color: var(--ink);
+    background: var(--yellow);
+    border-radius: 50%;
+    transform: rotate(9deg);
+  }
+
+  .hero__stamp span {
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero__stamp strong {
+    align-self: center;
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: -0.05em;
+    line-height: 0.85;
+  }
+
+  .hero__stamp i {
+    position: absolute;
+    right: 1.1rem;
+    bottom: 0.9rem;
+    font-style: normal;
+  }
+
+  .work {
+    padding-top: var(--space-5);
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(3rem, 6vw, 7rem) clamp(1.5rem, 4vw, 4rem);
+    padding-top: var(--space-5);
+  }
+
+  .project-grid > :first-child {
+    grid-column: 1 / -1;
+    width: min(100%, 52rem);
+  }
+
+  .approach {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: clamp(2rem, 8vw, 10rem);
+    padding-top: var(--space-6);
+  }
+
+  .approach__copy h2 {
+    max-width: 15ch;
+    font-size: clamp(2.5rem, 5vw, 5.1rem);
+  }
+
+  .approach__copy p {
+    max-width: 52ch;
+    margin: 2rem 0 1.25rem;
+    color: var(--ink-soft);
+  }
+
+  .contact {
+    margin-top: var(--space-6);
+    padding: var(--space-5);
+    color: var(--surface);
+    background: var(--ink);
+    border-radius: var(--radius-large);
+  }
+
+  .contact .eyebrow {
+    color: #b8c0ba;
+  }
+
+  .contact h2 {
+    margin-top: clamp(3rem, 8vw, 7rem);
+    font-size: clamp(3.2rem, 8vw, 7.5rem);
+  }
+
+  .contact a {
+    display: inline-block;
+    margin-top: 2rem;
+    color: var(--yellow);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  @media (max-width: 50rem) {
+    .hero {
+      min-height: auto;
+    }
+
+    .hero__body,
+    .approach {
+      grid-template-columns: 1fr;
+    }
+
+    .hero__aside {
+      max-width: 29rem;
+    }
+
+    .hero__stamp {
+      top: 10rem;
+      right: 1rem;
+      width: 6.7rem;
+    }
+  }
+
+  @media (max-width: 36rem) {
+    .project-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,65 @@
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <p class="footer-note">Available for thoughtful product work<br />and curious collaborations.</p>
+    <div class="footer-links">
+      <a href="mailto:hello@mayank.design">hello@mayank.design <span aria-hidden="true">↗</span></a>
+      <a href="/work">Selected work <span aria-hidden="true">↗</span></a>
+    </div>
+    <p class="copyright">© {new Date().getFullYear()} Mayank<br />Made with clarity.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: var(--space-6);
+    padding: var(--space-5) 0 1.5rem;
+    color: var(--surface);
+    background: var(--ink);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr auto;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .footer-note {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2.3rem);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .footer-links {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .footer-links a {
+    width: fit-content;
+    color: var(--surface);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .copyright {
+    margin: 0;
+    color: #b8c0ba;
+    font-size: 0.7rem;
+    line-height: 1.5;
+    text-align: right;
+  }
+
+  @media (max-width: 45rem) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .copyright {
+      text-align: left;
+    }
+  }
+</style>

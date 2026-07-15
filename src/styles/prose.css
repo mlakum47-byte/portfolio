@@ -1,0 +1,60 @@
+.prose {
+  max-width: var(--reading-width);
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  line-height: 1.7;
+}
+
+.prose > * + * {
+  margin-top: 1.5em;
+}
+
+.prose h2,
+.prose h3 {
+  scroll-margin-top: 7rem;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.prose h2 {
+  margin-top: 3.5em;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+}
+
+.prose h3 {
+  font-size: 1.6rem;
+}
+
+.prose p,
+.prose li {
+  color: #3b4740;
+}
+
+.prose a {
+  color: var(--ink);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.25em;
+}
+
+.prose li + li {
+  margin-top: 0.65em;
+}
+
+.prose strong {
+  color: var(--ink);
+}
+
+.prose blockquote {
+  margin: 2.5em 0;
+  padding-left: 1.25rem;
+  color: var(--ink);
+  border-left: 2px solid var(--accent);
+  font-family: var(--serif);
+  font-size: 1.45em;
+  line-height: 1.25;
+}

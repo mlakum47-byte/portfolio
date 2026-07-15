@@ -1,0 +1,107 @@
+---
+const sections = [
+  ['challenge', 'The challenge'],
+  ['contribution', 'My contribution'],
+  ['insight', 'What we learned'],
+  ['direction', 'Design direction'],
+  ['validation', 'Validation'],
+  ['outcome', 'Outcome'],
+  ['reflection', 'Reflection'],
+];
+---
+
+<details class="toc" open>
+  <summary>On this page <span aria-hidden="true">+</span></summary>
+  <nav aria-label="Case study sections">
+    <ol>
+      {sections.map(([id, label], index) => (
+        <li><a href={`#${id}`} data-toc-link={id}><span>{String(index + 1).padStart(2, '0')}</span>{label}</a></li>
+      ))}
+    </ol>
+  </nav>
+</details>
+
+<script>
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]')];
+  const sections = links
+    .map((link) => document.getElementById(link.dataset.tocLink ?? ''))
+    .filter((section): section is HTMLElement => Boolean(section));
+
+  if ('IntersectionObserver' in window && sections.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting).at(-1);
+        if (!visible) return;
+        links.forEach((link) => {
+          const active = link.dataset.tocLink === visible.target.id;
+          link.toggleAttribute('aria-current', active);
+        });
+      },
+      { rootMargin: '-22% 0px -65% 0px', threshold: 0 },
+    );
+    sections.forEach((section) => observer.observe(section));
+  }
+</script>
+
+<style>
+  .toc {
+    position: sticky;
+    top: 1.5rem;
+    width: 100%;
+    padding: 1rem;
+    background: #ebe8df;
+    border-radius: 0.75rem;
+  }
+
+  summary {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  summary span {
+    font-size: 1rem;
+  }
+
+  .toc[open] summary span {
+    transform: rotate(45deg);
+  }
+
+  ol {
+    display: grid;
+    gap: 0.5rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    display: grid;
+    grid-template-columns: 1.65rem 1fr;
+    gap: 0.3rem;
+    color: var(--ink-soft);
+    font-size: 0.76rem;
+    text-decoration: none;
+  }
+
+  a span {
+    color: var(--accent-deep);
+    font-size: 0.62rem;
+    font-weight: 700;
+  }
+
+  a[aria-current='true'],
+  a:hover {
+    color: var(--ink);
+  }
+
+  @media (max-width: 58rem) {
+    .toc {
+      position: static;
+    }
+  }
+</style>
