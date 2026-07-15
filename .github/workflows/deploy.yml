@@ -27,8 +27,14 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
+      - name: Debug Info
+        run: |
+          node --version
+          npm --version
+          npm ls astro
+
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --verbose
 
       - name: Build Astro
         run: npm run build
